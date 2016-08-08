@@ -722,4 +722,11 @@ class InvitableTest < ActiveSupport::TestCase
     assert user.persisted?
     assert user.errors.empty?
   end
+
+  test "invited_at? should return true after invitation is accepted" do
+    user = new_user
+    refute user.invitation_accepted?
+    user.accept_invitation!
+    assert user.invitation_accepted?
+  end
 end
